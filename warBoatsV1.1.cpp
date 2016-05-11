@@ -9,7 +9,6 @@ void showBoard(char board[SIZE][SIZE]);
 void hideBoat(int boat, char board[SIZE][SIZE]);
 void checkCoordinates(int row, int col, char guess[][SIZE], char target[][SIZE]);
 bool checkBoard(char target[][10]);
-int getCoords();
 int getCol();
 int getRow();
 
