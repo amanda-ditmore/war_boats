@@ -9,6 +9,7 @@ void showBoard(char board[SIZE][SIZE]);
 void hideBoat(int boat, char board[SIZE][SIZE]);
 void checkCoordinates(int row, int col, char guess[][SIZE], char target[][SIZE]);
 bool checkBoard(char target[][10]);
+int getCoords();
 int getCol();
 int getRow();
 
@@ -34,8 +35,23 @@ int main()
 		showBoard(guessBoard);
 		cout << endl;
 		showBoard(boatBoard);
-		row = getRow();
-		col = getCol();	
+
+/* cannot get this to work as a function */
+		char rowcoords[2];
+		int columncoords;
+		
+		cout << "Enter coords (l nn): ";
+		cin >> rowcoords >> columncoords;
+		    
+		//convert letter to array coords
+		row = rowcoords[0]-97;
+		    
+		//convert number to array coords
+		col = columncoords-1;
+	    
+/* see above */
+
+	
 		checkCoordinates(row, col, guessBoard, boatBoard);
 		boatSunk = !(checkBoard(boatBoard));
 	}
@@ -94,6 +110,8 @@ void showBoard(char board[SIZE][SIZE])
 		cout << endl;
 	}
 }
+
+
 
 int getRow ()//gets the row to fire at this turn. 
 {
