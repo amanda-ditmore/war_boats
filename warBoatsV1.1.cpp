@@ -9,8 +9,8 @@ void showBoard(char board[SIZE][SIZE]);
 void hideBoat(int boat, char board[SIZE][SIZE]);
 void checkCoordinates(int row, int col, char guess[][SIZE], char target[][SIZE]);
 bool checkBoard(char target[][10]);
-int getCol();
-int getRow();
+//int getCol();
+//int getRow();
 
 int main()
 {
@@ -36,6 +36,7 @@ int main()
 		showBoard(boatBoard);
 
 /* cannot get this to work as a function */
+// single input for coordinates. asks for two values.
 		char rowcoords[2];
 		int columncoords;
 		
@@ -111,7 +112,7 @@ void showBoard(char board[SIZE][SIZE])
 }
 
 
-
+/*
 int getRow ()//gets the row to fire at this turn. 
 {
 	char rowLet;	
@@ -161,6 +162,8 @@ int getCol()//returns the column to fire at this turn.
 		}
 	}
 }
+*/
+
 void checkCoordinates(int row, int col, char guess[][SIZE], char target[][SIZE])
 {
 	
