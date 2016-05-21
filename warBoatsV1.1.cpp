@@ -115,8 +115,7 @@ void checkCoordinates(int row, int col, char guess[][SIZE], char target[][SIZE])
 	if (guess[row][col] != '?')
 	{
 		cout << "Already guessed. Please enter new coordinates." << endl;
-		//row = getRow();
-		//col = getCol();
+		enterCoords(&row, &col);
 	}
 	//check on target board if it's a boat, update the boards
 	else if (target[row][col] == 'X')
