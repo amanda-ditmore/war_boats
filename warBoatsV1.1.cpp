@@ -9,8 +9,7 @@ void showBoard(char board[SIZE][SIZE]);
 void hideBoat(int boat, char board[SIZE][SIZE]);
 void checkCoordinates(int row, int col, char guess[][SIZE], char target[][SIZE]);
 bool checkBoard(char target[][10]);
-//int getCol();
-//int getRow();
+void enterCoords(int*, int*);
 
 int main()
 {
@@ -30,28 +29,13 @@ int main()
 	bool boatSunk = false;
 	while (!boatSunk)		
 	{	
-		int row, col;
+		int row = 0, col = 0;
 		showBoard(guessBoard);
 		cout << endl;
 		showBoard(boatBoard);
-
-/* cannot get this to work as a function */
-// single input for coordinates. asks for two values.
-		char rowcoords[2];
-		int columncoords;
+		    
+		enterCoords(&row, &col);
 		
-		cout << "Enter coords (l nn): ";
-		cin >> rowcoords >> columncoords;
-		    
-		//convert letter to array coords
-		row = rowcoords[0]-97;
-		    
-		//convert number to array coords
-		col = columncoords-1;
-	    
-/* see above */
-
-	
 		checkCoordinates(row, col, guessBoard, boatBoard);
 		boatSunk = !(checkBoard(boatBoard));
 	}
@@ -111,58 +95,18 @@ void showBoard(char board[SIZE][SIZE])
 	}
 }
 
-
-/*
-int getRow ()//gets the row to fire at this turn. 
+void enterCoords(int *row, int *col)
 {
-	char rowLet;	
-	int row;
-	bool validRow = false;
-	while (!validRow)
-	{
-		cout << "Row: ";
-		cin >> rowLet; //change to int, validate.
-		row = rowLet;
-		if (row > 64 && row < 75)//uppercase, convert to coordinate.
-		{
-			row = row - 65;
-			validRow = true;
-			return row;
-		}
-		else if(row > 96 && row <107)//lowercase, convert to coordinate
-		{
-			row = row - 97;
-			validRow = true;
-			return row;
-		}
-		else //invalid row, get better input. 
-		{
-			cout << "Invalid input. Please enter a valid row (A-J)" << endl;
-		}
-	}		
+	char rowCoords;
+	int columnCoords;
+		
+	cout << "Enter coords (l nn): ";
+	cin >> rowCoords >> columnCoords;
+	
+	//convert char ASCII to row int
+	*row = rowCoords-97;
+	*col = columnCoords;
 }
-
-int getCol()//returns the column to fire at this turn.
-{
-	int col;
-	bool validCol = false;
-	while (!validCol)
-	{		
-		cout << "Column: ";
-		cin >> col;
-		if (!(col >= 0 && col <= 10))
-		{
-			cout << "Invalid input. Please enter a valid column (0-10)" 
-				 << endl;			
-		}	
-		else
-		{
-			validCol = true;
-			return col;
-		}
-	}
-}
-*/
 
 void checkCoordinates(int row, int col, char guess[][SIZE], char target[][SIZE])
 {
@@ -171,8 +115,8 @@ void checkCoordinates(int row, int col, char guess[][SIZE], char target[][SIZE])
 	if (guess[row][col] != '?')
 	{
 		cout << "Already guessed. Please enter new coordinates." << endl;
-		row = getRow();
-		col = getCol();
+		//row = getRow();
+		//col = getCol();
 	}
 	//check on target board if it's a boat, update the boards
 	else if (target[row][col] == 'X')
