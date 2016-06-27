@@ -42,16 +42,17 @@ int main()
 	cout << "You sunk my battleship!!" << endl;
 	return 0;
 }
-//***********************************************
-// Computer hides one boat randomly on its board*
-//***********************************************
+
+
+
 void hideBoat(int boat, char board[SIZE][SIZE]) 
+// Computer hides one boat randomly on its board
 {	
 	//make 3 random numbers.
 	int seed = time(0);
 	srand(seed);
 	int num1 = rand(), num2 = rand(), num3 = rand();
-	//test: cout << num1 << " " << num2 << " " << num3 << " " << endl;
+
 	//randomly decide if it is vertical or horizontal
 	if (num1 % 2 == 0) //horizontal
 	{
@@ -65,7 +66,7 @@ void hideBoat(int boat, char board[SIZE][SIZE])
 			++col;
 		}
 	}
-	else //go vertical	
+	else //vertical	
 	{	
 		//randomly pick an appropriate coordinate
 		int row = num2 % (SIZE - boat);
@@ -78,10 +79,10 @@ void hideBoat(int boat, char board[SIZE][SIZE])
 		}
 	}
 }
-//************************************
-//This will display any of the boards*
-//************************************	
+
+
 void showBoard(char board[SIZE][SIZE])
+//This will display any of the boards	
 {
 	cout << " 0123456789" << endl;
 	for (int i = 0; i < SIZE; i++)
@@ -95,7 +96,8 @@ void showBoard(char board[SIZE][SIZE])
 	}
 }
 
-int getRow ()//gets the row to fire at this turn. 
+int getRow ()
+//gets the row to fire at this turn. 
 {
 	char rowLet;	
 	int row;
@@ -124,7 +126,8 @@ int getRow ()//gets the row to fire at this turn.
 	}		
 }
 
-int getCol()//returns the column to fire at this turn.
+int getCol()
+//returns the column to fire at this turn.
 {
 	int col;
 	bool validCol = false;
@@ -169,7 +172,6 @@ void checkCoordinates(int row, int col, char guess[][SIZE], char target[][SIZE])
 }
 bool checkBoard(char target[][10])
 //this function loops through the board to see if there are still x's
-//check each spot. if there is an x, this returns true. if there is no x, false.  
 {
 	bool targetX = false;
 	for (int i = 0; i < 10; i++)
@@ -189,20 +191,3 @@ bool checkBoard(char target[][10])
 	}
 	return targetX;
 }
-
-/*to do: the errors for out of range during the guessing loop aren't going the way I want. example output: 
-Row: r
-Invalid input. Please enter a valid row (A-J)
-Column: 11
-Invalid input. Please enter a valid column (0-10)
-Already guessed. Please enter new coordinates.
-Row: F
-Column: 3
-
-Hit!
-Maybe drawing a diagram will help?
-does there need to be the outer while loop of the guess function?
-maybe try having a get coordinates function that loops till there are valid coordinates, 
-and then a separate function that checks that spot on the board (then we would only need to pass the one spot instead of both. 
-Can a function call itself?
-Add a counter for the guesses/turns */
